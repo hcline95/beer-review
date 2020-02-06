@@ -9,17 +9,19 @@ var BeerDetailView = Backbone.View.extend({
   },
 
   initialize:function(){
-    this.listenTo(this.model.get('reviews'), 'add', this.renderReview);
+
+  //  console.log('this is the model', this.model.reviews.get('model'))
+  this.listenTo(this.model.get('reviews'), 'add', this.renderReview);
   },
 
 
 
   createReview:function(){
-    console.log(this.$('#review-notes-input').val())
-    this.model.get('reviews').add({
-      name: this.$('#review-name-input').val(),
-      text: this.$('#review-notes-input').val()
-    });
+    console.log('buttone was clicked')
+    this.model.get('reviews').addReview(
+      this.$('#review-name-input').val(),
+      this.$('#review-notes-input').val(),
+    );
   },
 
   renderReviews: function() {
@@ -31,6 +33,7 @@ var BeerDetailView = Backbone.View.extend({
     var reviewView = new ReviewView({
       model: review
     });
+
     this.$('.reviews-list').append(reviewView.render().el);
   },
   render: function() {

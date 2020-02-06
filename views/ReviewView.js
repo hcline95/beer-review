@@ -13,10 +13,8 @@ ReviewView = Backbone.View.extend({
   // Cache the template function for a single item.
   template: Handlebars.compile($('#review-template').html()),
 
-  initialize:function(){
-  },
-
   render: function () {
+
   	this.$el.html(this.template(this.model.toJSON()))
   	return this;
   }

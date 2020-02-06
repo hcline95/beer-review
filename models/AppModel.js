@@ -5,6 +5,8 @@ var AppModel = Backbone.Model.extend({
 
       current_beer: null,
 
+      url:'',
+
       // either true or false
       show_reviews: false
     };
@@ -12,14 +14,13 @@ var AppModel = Backbone.Model.extend({
 
   showReviews: function (id) {
     // make sure our id is a number
-    id = parseInt(id);
 
     var allBeers = this.get('beers');
 
     var currentBeer = allBeers.findWhere({ id: id });
-
     this.set('current_beer', currentBeer);
     this.set('show_reviews', true);
+    this.get('current_beer', currentBeer).get('reviews').updateBeerId(id);
   },
 
   showBeers: function() {
